@@ -13,9 +13,9 @@ den = [1, 100]
 FT = signal.TransferFunction(num, den)
 
 # Controlador
-numControlador = [np.float64(524.6076052543914), 1]
+numControlador = [np.float64(0.0003842340221311719), 1]
 
-denControlador = [np.float64(2.5330295910584445e-09), np.float64(3.8423402213117184e-05), 0]
+denControlador = [np.float64(8.987528142323844e-10), np.float64(1.3633137565120973e-05), 0]
 
 C = signal.TransferFunction(numControlador, denControlador)
 

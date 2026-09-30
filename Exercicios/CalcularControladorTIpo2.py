@@ -4,7 +4,7 @@ MFd = 45
 FaseFreqCorte = -90
 FCdesejada = 1000
 
-ganhodBFCd = -20
+ganhodBFCd = -29
 
 
 # atribuir C2
@@ -32,10 +32,9 @@ print('R1: ', R1)
 R2 = k/(2*np.pi*FCdesejada*C1)
 print('R2: ', R2)
 
-
 # Calculemo o controlador
 
-numC = [R1*R2, 1]
+numC = [C1*R2, 1]
 print(numC)
 
 denC = [R1*R2*C1*C2, R1*C1 + R1*C2, 0]
