@@ -7,7 +7,7 @@ from scipy import signal
 # ============================================================
 
 # Frequência (Hz)
-f = np.logspace(-2, 2, 10000)
+f = np.logspace(-2, 4, 10000)
 
 # Frequência angular
 w = 2 * np.pi * f
