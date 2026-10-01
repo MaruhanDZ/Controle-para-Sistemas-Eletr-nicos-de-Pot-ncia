@@ -1,0 +1,957 @@
+version = 4.2
+
+//
+// Saved by sw version: 2026.3
+//
+
+model "Tarefa" {
+    configuration {
+        hil_device = "VHIL+"
+        hil_configuration_id = 1
+        simulation_method = exact
+        simulation_time_step = auto
+        fine_auto_sim_step = False
+        simulation_discret_scaling = 1.0
+        dsp_timer_periods = 100e-6, 50e-3
+        ss_calc_method = "systematic elimination"
+        enb_pole_shift = True
+        enb_gds_oversampling = True
+        show_modes = False
+        device_ao_limit_enable = False
+        reset_analog_outputs_on_sim_stop = True
+        reset_analog_outputs_on_sim_stop_mode = Offset values
+        reset_digital_outputs_on_sim_stop = True
+        vhil_adio_loopback = False
+        dma_enable = False
+        cpl_stb = False
+        enb_dep_sw_detect = False
+        code_section = "internal memory"
+        data_section = "internal memory"
+        sys_sp_rate_1 = 0.0001
+        sys_sp_rate_2 = 0.05
+        sys_real_type_precision = "default"
+        user_real_type_precision = "default"
+        sys_cpu_optimization = "high"
+        user_cpu_optimization = "high"
+        user_cpu_part_option = "default"
+        matrix_based_reduction = True
+        cpl_dynamics_analysis = False
+        export_ss_to_pickle = False
+        ground_scope_core = False
+        dss_num_tol = 1e-15
+        cce_platform = "generic"
+        cce_use_relative_names = False
+        cce_type_mapping_real = "double"
+        cce_type_mapping_uint = "unsigned int"
+        cce_type_mapping_int = "int"
+        cce_platform = "generic"
+        cce_use_relative_names = False
+        cce_type_mapping_real = "double"
+        cce_type_mapping_uint = "unsigned int"
+        cce_type_mapping_int = "int"
+        cce_term_var_location = "local"
+        cce_directory = ""
+        cce_custom_type_int = ""
+        cce_custom_type_uint = ""
+        cce_custom_type_real = ""
+        tunable_params = "component defined"
+        sp_compiler_type = "C compiler"
+        sig_stim = "off"
+        export_resource_list = ""
+        export_dependency_list = ""
+        excluded_resource_list = ""
+        excluded_component_from_locking_list = ""
+        export_out_file = ""
+        export_lock_top_level = True
+        export_encrypt_library = True
+        export_encrypt_resources = True
+        solver_type = "DAE"
+        integration_method = "BDF"
+        max_sim_step = 1e-4
+        simulation_time = 1.0
+        abs_tol = 1e-3
+        rel_tol = 1e-3
+        init_sim_step = 1e-6
+        r_on_sw = 1e-3
+        v_on_diode = 0.1
+        data_sampling_rate = 0
+        feedthrough_validation_error_level = error
+    }
+
+    component Subsystem Root {
+        component "core/Signal Controlled Sinusoidal Voltage Source" Vsp_sin1 {
+        }
+        [
+            position = 7848, 8168
+        ]
+
+        component "core/Constant" Constant1 {
+            execution_rate = "0.0001"
+            value = "0"
+        }
+        [
+            position = 7728, 8192
+        ]
+
+        component "core/Constant" Constant2 {
+            execution_rate = "0.0001"
+            value = "120"
+        }
+        [
+            position = 7656, 8168
+        ]
+
+        component "core/Product" Product1 {
+        }
+        [
+            position = 7580, 8144
+        ]
+
+        component "core/Step" Step1 {
+            execution_rate = "0.0001"
+            step_time = "0.8"
+        }
+        [
+            position = 7492, 8204
+        ]
+
+        component "core/Constant" Constant3 {
+            execution_rate = "0.0001"
+            value = "5"
+        }
+        [
+            position = 7488, 8136
+        ]
+
+        component "core/Buck" Buck1 {
+            carrier_freq = "15000"
+            ctrl_src = "Internal modulator"
+            d_time = "1e-6"
+            execution_rate = "1e-06"
+            fvd_def_method = "LUT"
+            ref_sig_min_max = "[0, 1.0]"
+        }
+        [
+            position = 8088, 8216
+        ]
+
+        component "core/Constant" Constant4 {
+            execution_rate = "Ts"
+        }
+        [
+            position = 8012, 8052
+        ]
+
+        component "core/Inductor" L1 {
+            inductance = "1.5e-3"
+        }
+        [
+            position = 8264, 8120
+        ]
+
+        component "core/Capacitor" C1 {
+            capacitance = "470e-6"
+        }
+        [
+            position = 8368, 8224
+            rotation = right
+        ]
+
+        component "core/Resistor" R1 {
+            resistance = "50"
+        }
+        [
+            position = 8488, 8216
+            rotation = right
+        ]
+
+        component "core/Resistor" R2 {
+            resistance = "50"
+        }
+        [
+            position = 8636, 8252
+            rotation = right
+        ]
+
+        component "core/Single Pole Single Throw Contactor" S1 {
+            ctrl_src = "Model"
+        }
+        [
+            position = 8632, 8160
+            rotation = left
+        ]
+
+        component "core/Step" Step2 {
+            execution_rate = "0.0001"
+            step_time = "0.6"
+        }
+        [
+            position = 8560, 8156
+        ]
+
+        component "core/Ground" gnd1 {
+        }
+        [
+            position = 8360, 8372
+        ]
+
+        component "core/Voltage Measurement" Vout {
+            execution_rate = "0.0001"
+            sig_output = "True"
+        }
+        [
+            position = 8736, 8208
+            rotation = right
+        ]
+
+        component "core/Sum" Sum1 {
+            execution_rate = "Ts"
+            signs = "+-"
+        }
+        [
+            position = 7920, 8604
+        ]
+
+        component "core/Unit Delay" "Unit Delay1" {
+            execution_rate = "Ts"
+        }
+        [
+            position = 8132, 8644
+            rotation = right
+        ]
+
+        component "core/Gain" Gain1 {
+            gain = "80.835"
+        }
+        [
+            position = 8224, 8576
+        ]
+
+        component "core/Sum" Sum2 {
+            signs = "4"
+        }
+        [
+            position = 8360, 8600
+        ]
+
+        component "core/Scope" Scope1 {
+            selected_signals = "[\'Vin\', \'Vout\', \'Vref\', \'Erro\']"
+            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true, \"signals_tooltips_enabled\": true}, \"signals\": {\"Vin\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}, \"is_manual\": {\"1\": false}}, \"Vout\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}, \"is_manual\": {\"2\": false}}, \"Vref\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#00CC00\"}, \"display\": {\"2\": \"solid\"}, \"is_manual\": {\"2\": false}}, \"Erro\": {\"viewports\": [3], \"type\": \"analog\", \"color\": {\"3\": \"#FF0000\"}, \"display\": {\"3\": \"solid\"}, \"is_manual\": {\"3\": false}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"5\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"6\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
+            user_range_data = "{\"1\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"2\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"3\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"4\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"5\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"6\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}}"
+        }
+        [
+            position = 7624, 7984
+        ]
+
+        component "core/Gain" Gain2 {
+            gain = "100"
+        }
+        [
+            position = 7896, 8456
+        ]
+
+        component "core/Probe" Vref {
+        }
+        [
+            position = 7968, 8456
+        ]
+
+        component "core/Signal Controlled Voltage Source" Vsp1 {
+        }
+        [
+            position = 7848, 8292
+            rotation = left
+            scale = 1, -1
+        ]
+
+        component "core/Voltage Measurement" Vin {
+            execution_rate = "0.0001"
+        }
+        [
+            position = 7944, 8212
+            rotation = right
+        ]
+
+        component "core/Gain" Gain3 {
+            gain = "1/100"
+        }
+        [
+            position = 8824, 8208
+        ]
+
+        component "core/Limit" Limit1 {
+            lower_limit = "0"
+            upper_limit = "1"
+        }
+        [
+            position = 8904, 8644
+        ]
+
+        component "core/Rate Transition" "Rate Transition1" {
+            execution_rate = "Ts"
+        }
+        [
+            position = 7692, 8744
+        ]
+
+        component "core/Unit Delay" "Unit Delay2" {
+            execution_rate = "Ts"
+        }
+        [
+            position = 8132, 8728
+            rotation = right
+        ]
+
+        component "core/Unit Delay" "Unit Delay3" {
+            execution_rate = "Ts"
+        }
+        [
+            position = 8132, 8840
+            rotation = right
+        ]
+
+        component "core/Gain" Gain4 {
+            gain = "149.09"
+        }
+        [
+            position = 8228, 8688
+        ]
+
+        component "core/Gain" Gain5 {
+            gain = "68.74"
+        }
+        [
+            position = 8224, 8780
+        ]
+
+        component "core/Gain" Gain6 {
+            gain = "0.000000000000032"
+        }
+        [
+            position = 8224, 8884
+        ]
+
+        component "core/Sum" Sum3 {
+            signs = "+---"
+        }
+        [
+            position = 8588, 8624
+        ]
+
+        component "core/Unit Delay" "Unit Delay4" {
+            execution_rate = "Ts"
+        }
+        [
+            position = 8640, 8712
+            rotation = right
+        ]
+
+        component "core/Unit Delay" "Unit Delay5" {
+            execution_rate = "Ts"
+        }
+        [
+            position = 8640, 8804
+            rotation = right
+        ]
+
+        component "core/Unit Delay" "Unit Delay6" {
+            execution_rate = "Ts"
+        }
+        [
+            position = 8640, 8908
+            rotation = right
+        ]
+
+        component "core/Gain" Gain7 {
+            gain = "0.0000038"
+        }
+        [
+            position = 8508, 8984
+            scale = -1, 1
+        ]
+
+        component "core/Gain" Gain8 {
+            gain = "0.3"
+        }
+        [
+            position = 8508, 8860
+            scale = -1, 1
+        ]
+
+        component "core/Gain" Gain9 {
+            gain = "1.3"
+        }
+        [
+            position = 8504, 8744
+            scale = -1, 1
+        ]
+
+        component "core/Step" Step4 {
+            execution_rate = "0.0001"
+            final_value = "120"
+            initial_value = "100"
+            step_time = "0.45"
+        }
+        [
+            position = 7732, 8292
+        ]
+
+        component "core/Probe" Erro {
+        }
+        [
+            position = 8028, 8544
+        ]
+
+        component "core/Ramp" Ramp1 {
+            execution_rate = "Ts"
+            slope = "10"
+        }
+        [
+            position = 7572, 8556
+        ]
+
+        component "core/Limit" Limit2 {
+            execution_rate = "Ts"
+            lower_limit = "0"
+            upper_limit = "1"
+        }
+        [
+            position = 7636, 8556
+        ]
+
+        component "core/Product" Product2 {
+            execution_rate = "Ts"
+        }
+        [
+            position = 7728, 8516
+        ]
+
+        component "core/Step" Step5 {
+            execution_rate = "Ts"
+            final_value = "0.5"
+            initial_value = "0.4"
+            step_time = "0.25"
+        }
+        [
+            position = 7588, 8500
+        ]
+
+        tag From1 {
+            value = "pwm"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7932, 8008
+            size = 60, 20
+        ]
+
+        tag Goto1 {
+            value = "vout_sens"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8944, 8208
+            size = 60, 20
+        ]
+
+        tag From2 {
+            value = "vout_sens"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7596, 8744
+            size = 60, 20
+        ]
+
+        tag Goto2 {
+            value = "pwm"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8984, 8644
+            size = 60, 20
+        ]
+
+        junction Junction1 pe
+        [
+            position = 7944, 8332
+        ]
+
+        junction Junction2 pe
+        [
+            position = 7944, 8120
+        ]
+
+        junction Junction3 pe
+        [
+            position = 8372, 8120
+        ]
+
+        junction Junction4 pe
+        [
+            position = 8372, 8312
+        ]
+
+        junction Junction5 pe
+        [
+            position = 8488, 8312
+        ]
+
+        junction Junction6 pe
+        [
+            position = 8488, 8120
+        ]
+
+        junction Junction7 pe
+        [
+            position = 8632, 8120
+        ]
+
+        junction Junction8 pe
+        [
+            position = 8636, 8312
+        ]
+
+        junction Junction9 pe
+        [
+            position = 8360, 8312
+        ]
+
+        junction Junction12 sp
+        [
+            position = 8132, 8736
+        ]
+
+        junction Junction13 sp
+        [
+            position = 8132, 8672
+        ]
+
+        junction Junction17 sp
+        [
+            position = 8640, 8860
+        ]
+
+        junction Junction18 sp
+        [
+            position = 8640, 8740
+        ]
+
+        junction Junction21 sp
+        [
+            position = 8640, 8652
+        ]
+
+        junction Junction22 sp
+        [
+            position = 8132, 8600
+        ]
+
+        junction Junction23 sp
+        [
+            position = 7968, 8604
+        ]
+
+        junction Junction24 sp
+        [
+            position = 7824, 8520
+        ]
+
+        comment Comment1 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Sans'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Degrau de carga em 0.6s</p></body></html> ENDCOMMENT 
+        [
+            position = 8540, 8068
+        ]
+
+        comment Comment3 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Sans'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">b0</p></body></html> ENDCOMMENT 
+        [
+            position = 8204, 8520
+        ]
+
+        comment Comment4 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Sans'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">b1</p></body></html> ENDCOMMENT 
+        [
+            position = 8220, 8636
+        ]
+
+        comment Comment5 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Sans'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">b2</p></body></html> ENDCOMMENT 
+        [
+            position = 8220, 8736
+        ]
+
+        comment Comment6 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Sans'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">b3</p></body></html> ENDCOMMENT 
+        [
+            position = 8228, 8840
+        ]
+
+        comment Comment7 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Sans'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">a3</p></body></html> ENDCOMMENT 
+        [
+            position = 8476, 8936
+        ]
+
+        comment Comment8 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Sans'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">a2</p></body></html> ENDCOMMENT 
+        [
+            position = 8476, 8812
+        ]
+
+        comment Comment9 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Sans'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">a1</p></body></html> ENDCOMMENT 
+        [
+            position = 8472, 8696
+        ]
+
+        comment Comment10 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Sans'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Universidade Federal de Santa Catarina</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Prof. Tiago Davi Curi Busarello</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Tarefa de EAS410002 - Controle para Eletrônica de Potência</p></body></html> ENDCOMMENT 
+        [
+            position = 7440, 7864
+        ]
+
+        comment Comment11 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Sans'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Referência:</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Inicia com rampa e degrau em 0.25s</p></body></html> ENDCOMMENT 
+        [
+            position = 7272, 8504
+        ]
+
+        comment Comment12 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Sans'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Inclusão de oscilação na </p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">tensão de entrada em 0.8s</p></body></html> ENDCOMMENT 
+        [
+            position = 7256, 8144
+        ]
+
+        comment Comment13 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Sans'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Tensão CC de entrada, </p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">com degrau de 100V para 120V </p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">em 0.45s</p></body></html> ENDCOMMENT 
+        [
+            position = 7504, 8320
+        ]
+
+        connect Constant1.out Vsp_sin1.Ph as Connection1
+        connect Constant2.out Vsp_sin1.f as Connection2
+        connect Product1.out Vsp_sin1.Rms as Connection3
+        connect Step1.out Product1.in1 as Connection4
+        connect Constant3.out Product1.in as Connection5
+        connect Constant4.out Buck1.En as Connection6
+        connect From1 Buck1.In as Connection7
+        connect Gain2.out Vref.in as Connection8
+        connect Vsp_sin1.n Vsp1.p_node as Connection10
+        connect Vsp1.n_node Junction1 as Connection12
+        connect Junction1 Buck1.b_in as Connection13
+        connect Vin.n_node Junction1 as Connection14
+        connect Vsp_sin1.p Junction2 as Connection15
+        connect Junction2 Buck1.a_in as Connection16
+        connect Vin.p_node Junction2 as Connection17
+        connect Buck1.a_out L1.p_node as Connection18
+        connect L1.n_node Junction3 as Connection21
+        connect Junction3 C1.p_node as Connection22
+        connect Junction4 C1.n_node as Connection25
+        [
+            breakpoints = 8368, 8264
+        ]
+        connect S1.a_in R2.p_node as Connection27
+        connect R1.n_node Junction5 as Connection28
+        connect Junction5 Junction4 as Connection29
+        connect R1.p_node Junction6 as Connection31
+        connect Junction6 Junction3 as Connection32
+        connect Step2.out S1.ctrl_in as Connection34
+        connect S1.a_out Junction7 as Connection35
+        connect Junction7 Junction6 as Connection36
+        connect Vout.p_node Junction7 as Connection37
+        connect R2.n_node Junction8 as Connection38
+        connect Junction8 Junction5 as Connection39
+        connect Vout.n_node Junction8 as Connection40
+        connect Buck1.b_out Junction9 as Connection41
+        connect Junction9 Junction4 as Connection42
+        connect gnd1.node Junction9 as Connection43
+        connect Vout.out Gain3.in as Connection46
+        connect Gain3.out Goto1 as Connection47
+        connect Limit1.out Goto2 as Connection57
+        connect From2 "Rate Transition1.in" as Connection58
+        connect Gain1.out Sum2.in as Connection61
+        connect Gain6.in "Unit Delay3.out" as Connection67
+        connect "Unit Delay2.out" Junction12 as Connection68
+        connect Junction12 "Unit Delay3.in" as Connection69
+        connect Gain5.in Junction12 as Connection70
+        connect "Unit Delay1.out" Junction13 as Connection71
+        connect Junction13 "Unit Delay2.in" as Connection72
+        connect Gain4.in Junction13 as Connection73
+        connect Gain4.out Sum2.in1 as Connection74
+        [
+            breakpoints = 8268, 8672; 8268, 8592
+        ]
+        connect Gain5.out Sum2.in2 as Connection75
+        [
+            breakpoints = 8288, 8736; 8288, 8608
+        ]
+        connect Gain6.out Sum2.in3 as Connection76
+        [
+            breakpoints = 8308, 8812; 8308, 8624
+        ]
+        connect Sum2.out Sum3.in as Connection77
+        connect Gain7.in "Unit Delay6.out" as Connection89
+        connect Gain7.out Sum3.in1 as Connection90
+        [
+            breakpoints = 8412, 8624
+        ]
+        connect "Unit Delay5.out" Junction17 as Connection91
+        connect Junction17 "Unit Delay6.in" as Connection92
+        connect Gain8.in Junction17 as Connection93
+        connect Gain8.out Sum3.in2 as Connection94
+        [
+            breakpoints = 8436, 8772; 8436, 8632
+        ]
+        connect "Unit Delay4.out" Junction18 as Connection95
+        connect Junction18 "Unit Delay5.in" as Connection96
+        connect Gain9.in Junction18 as Connection97
+        connect Gain9.out Sum3.in3 as Connection98
+        [
+            breakpoints = 8460, 8744; 8460, 8648
+        ]
+        connect Step4.out Vsp1.in as Connection99
+        connect "Rate Transition1.out" Sum1.in1 as Connection104
+        [
+            breakpoints = 7824, 8744; 7824, 8612
+        ]
+        connect "Unit Delay4.in" Junction21 as Connection110
+        connect Junction21 Sum3.out as Connection111
+        [
+            breakpoints = 8644, 8624
+        ]
+        connect Limit1.in Junction21 as Connection112
+        connect "Unit Delay1.in" Junction22 as Connection116
+        connect Junction22 Gain1.in as Connection117
+        [
+            breakpoints = 8132, 8576
+        ]
+        connect Sum1.out Junction23 as Connection119
+        connect Junction23 Junction22 as Connection120
+        connect Erro.in Junction23 as Connection121
+        connect Ramp1.out Limit2.in as Connection126
+        connect Limit2.out Product2.in1 as Connection128
+        connect Gain2.in Junction24 as Connection130
+        connect Junction24 Sum1.in as Connection131
+        [
+            breakpoints = 7824, 8560; 7824, 8560
+        ]
+        connect Product2.out Junction24 as Connection132
+        connect Step5.out Product2.in as Connection133
+    }
+
+    default {
+        "core/Capacitor" {
+            signal_access = "inherit"
+            capacitance = "1e-6"
+            initial_voltage = "0"
+            pole_shift_ignore = "False"
+            visible = "True"
+        }
+
+        "core/Constant" {
+            value = "1"
+            signal_type = "real"
+            execution_rate = "100e-6"
+            _tunable = "False"
+        }
+
+        "core/Gain" {
+            gain = "1"
+            multiplication = "Element-wise(K.*u)"
+            force_tml = "True"
+            _tunable = "False"
+            execution_rate = "inherit"
+        }
+
+        "core/Inductor" {
+            signal_access = "inherit"
+            inductance = "1e-3"
+            initial_current = "0.0"
+            pole_shift_ignore = "False"
+            visible = "True"
+        }
+
+        "core/Limit" {
+            upper_limit = "[\'inf\']"
+            lower_limit = "[\'-inf\']"
+            execution_rate = "inherit"
+        }
+
+        "core/Probe" {
+            signal_access = "inherit"
+            addr = "0"
+            override_signal_name = "False"
+            signal_name = ""
+            signal_type = "generic"
+            streaming_en = "False"
+            streaming_er_idx = "0"
+            execution_rate = "inherit"
+        }
+
+        "core/Product" {
+            signs = "2"
+            execution_rate = "inherit"
+        }
+
+        "core/Ramp" {
+            slope = "1"
+            start_time = "0"
+            initial_output = "0"
+            execution_rate = "100e-6"
+        }
+
+        "core/Resistor" {
+            resistance = "1"
+            param_set = ""
+        }
+
+        "core/Scope" {
+            signals_data = "{}"
+            selected_signals = "[]"
+            user_range_data = "{}"
+        }
+
+        "core/Step" {
+            step_time = "1"
+            initial_value = "0"
+            final_value = "1"
+            signal_type = "real"
+            execution_rate = "100e-6"
+        }
+
+        "core/Sum" {
+            signs = "2"
+            execution_rate = "inherit"
+        }
+
+        "core/Unit Delay" {
+            init_value = "0"
+            signal_out_type = "inherit"
+            execution_rate = "inherit"
+        }
+
+        "core/Buck" {
+            signal_access = "inherit"
+            ctrl_src = "Digital inputs"
+            op_mode = "Fixed carrier frequency"
+            carrier_freq = "10000.0"
+            carr_ph_offset = "0.0"
+            d_time = "5e-6"
+            ref_sig_min_max = "[-1.0, 1.0]"
+            load_mode = "on min"
+            execution_rate = "inherit"
+            switches_names_at_mask = "[\'S1\', \'D1\']"
+            switches_names_at_mask_previous = "[\'S1\', \'D1\']"
+            S1 = "1"
+            S1_logic = "active high"
+            pwm_enabling = "False"
+            pwm_enable_di = "13"
+            pwm_enable_inv = "active high"
+            losses_estimation = "False"
+            load_xml_en = "User tables"
+            fvd_def_method = "Voltage and Resistance"
+            Import_igbt_xml = "not selected"
+            Import_diode_xml = "not selected"
+            xml_data = "{}"
+            transistor_data = "{\'package_class\': \'IGBT\', \'variables\': {}, \'constants\': {}, \'custom_tables\': {}, \'turn_on_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 400.0, 800.0, 1200.0], \'voltage_axis\': [0.0, 1800.0], \'temperature_axis\': [25.0, 125.0], \'energy\': [[[0.0, 0.0, 0.0, 0.0], [0.0, 0.4068, 1.001, 1.822]], [[0.0, 0.0, 0.0, 0.0], [0.0, 0.6317, 1.38, 1.784]]], \'parsed_formula\': \'E_turn_on_losses\'}, \'turn_off_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 400.0, 800.0, 1200.0], \'voltage_axis\': [0.0, 1800.0], \'temperature_axis\': [25.0, 125.0], \'energy\': [[[0.0, 0.0, 0.0, 0.0], [0.0, 0.6, 0.88, 1.177]], [[0.0, 0.0, 0.0, 0.0], [0.0, 0.9094, 1.25, 1.784]]], \'parsed_formula\': \'E_turn_off_losses\'}, \'conduction_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 100.0, 200.0, 400.0, 600.0, 700.0, 800.0, 900.0, 1000.0, 1200.0, 1400.0, 1600.0], \'temperature_axis\': [25.0, 125.0], \'voltage_drop\': [[0.0, 1.5, 1.8, 2.3, 2.69, 2.9, 3.1, 3.25, 3.41, 3.73, 4.0, 4.31], [0.0, 1.63, 2.09, 2.77, 3.37, 3.63, 3.8, 4.11, 4.37, 4.81, 5.29, 5.7]], \'parsed_formula\': \'v_conduction_losses\'}, \'c_function_code\': {\'output_fnc\': \'E_turn_on_losses = lookup3d(turn_on_losses_table, i, v, T, current_axis_turn_on_losses, voltage_axis_turn_on_losses, temperature_axis_turn_on_losses, 4, 2, 2);\nE_turn_off_losses = lookup3d(turn_off_losses_table, i, v, T,current_axis_turn_off_losses, voltage_axis_turn_off_losses, temperature_axis_turn_off_losses, 4, 2, 2);\nv_conduction_losses = lookup2d(conduction_losses_table, i, T,current_axis_conduction_losses, temperature_axis_conduction_losses, 12, 2);\ne_t_on = E_turn_on_losses;\ne_t_off = E_turn_off_losses;\nv_ce = v_conduction_losses;\n\', \'arb_defs\': \'real current_axis_turn_off_losses[4] = { 0.0, 400.0, 800.0, 1200.0 };\nreal voltage_axis_turn_off_losses[2] = { 0.0, 1800.0 };\nreal temperature_axis_turn_off_losses[2] = { 25.0, 125.0 };\nreal E_turn_off_losses;\nreal turn_off_losses_table[16] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.6, 0.88, 1.177, 0.0, 0.0, 0.0, 0.0, 0.0, 0.9094, 1.25, 1.784 };\nreal current_axis_conduction_losses[12] = { 0.0, 100.0, 200.0, 400.0, 600.0, 700.0, 800.0, 900.0, 1000.0, 1200.0, 1400.0, 1600.0 };\nreal temperature_axis_conduction_losses[2] = { 25.0, 125.0 };\nreal v_conduction_losses;\nreal conduction_losses_table[24] = { 0.0, 1.5, 1.8, 2.3, 2.69, 2.9, 3.1, 3.25, 3.41, 3.73, 4.0, 4.31, 0.0, 1.63, 2.09, 2.77, 3.37, 3.63, 3.8, 4.11, 4.37, 4.81, 5.29, 5.7 };\nreal current_axis_turn_on_losses[4] = { 0.0, 400.0, 800.0, 1200.0 };\nreal voltage_axis_turn_on_losses[2] = { 0.0, 1800.0 };\nreal temperature_axis_turn_on_losses[2] = { 25.0, 125.0 };\nreal E_turn_on_losses;\nreal turn_on_losses_table[16] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.4068, 1.001, 1.822, 0.0, 0.0, 0.0, 0.0, 0.0, 0.6317, 1.38, 1.784 };\n\'}}"
+            diode_data = "{\'package_class\': \'Diode\', \'variables\': {}, \'constants\': {}, \'custom_tables\': {}, \'turn_on_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 400.0, 800.0, 1200.0], \'voltage_axis\': [0.0, 1800.0], \'temperature_axis\': [25.0, 125.0], \'energy\': [[[0.0, 0.0, 0.0, 0.0], [0.0, 0.4068, 1.001, 1.822]], [[0.0, 0.0, 0.0, 0.0], [0.0, 0.6317, 1.38, 1.784]]], \'parsed_formula\': \'E_turn_on_losses\'}, \'turn_off_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 400.0, 800.0, 1200.0], \'voltage_axis\': [0.0, 1800.0], \'temperature_axis\': [25.0, 125.0], \'energy\': [[[0.0, 0.0, 0.0, 0.0], [0.0, 0.6, 0.88, 1.177]], [[0.0, 0.0, 0.0, 0.0], [0.0, 0.9094, 1.25, 1.784]]], \'parsed_formula\': \'E_turn_off_losses\'}, \'conduction_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 100.0, 200.0, 400.0, 600.0, 700.0, 800.0, 900.0, 1000.0, 1200.0, 1400.0, 1600.0], \'temperature_axis\': [25.0, 125.0], \'voltage_drop\': [[0.0, 1.5, 1.8, 2.3, 2.69, 2.9, 3.1, 3.25, 3.41, 3.73, 4.0, 4.31], [0.0, 1.63, 2.09, 2.77, 3.37, 3.63, 3.8, 4.11, 4.37, 4.81, 5.29, 5.7]], \'parsed_formula\': \'v_conduction_losses\'}, \'c_function_code\': {\'output_fnc\': \'E_turn_on_losses = lookup3d(turn_on_losses_table, i, v, T, current_axis_turn_on_losses, voltage_axis_turn_on_losses, temperature_axis_turn_on_losses, 4, 2, 2);\nE_turn_off_losses = lookup3d(turn_off_losses_table, i, v, T,current_axis_turn_off_losses, voltage_axis_turn_off_losses, temperature_axis_turn_off_losses, 4, 2, 2);\nv_conduction_losses = lookup2d(conduction_losses_table, i, T,current_axis_conduction_losses, temperature_axis_conduction_losses, 12, 2);\ne_t_on = E_turn_on_losses;\ne_t_off = E_turn_off_losses;\nv_ce = v_conduction_losses;\n\', \'arb_defs\': \'real current_axis_turn_off_losses[4] = { 0.0, 400.0, 800.0, 1200.0 };\nreal voltage_axis_turn_off_losses[2] = { 0.0, 1800.0 };\nreal temperature_axis_turn_off_losses[2] = { 25.0, 125.0 };\nreal E_turn_off_losses;\nreal turn_off_losses_table[16] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.6, 0.88, 1.177, 0.0, 0.0, 0.0, 0.0, 0.0, 0.9094, 1.25, 1.784 };\nreal current_axis_conduction_losses[12] = { 0.0, 100.0, 200.0, 400.0, 600.0, 700.0, 800.0, 900.0, 1000.0, 1200.0, 1400.0, 1600.0 };\nreal temperature_axis_conduction_losses[2] = { 25.0, 125.0 };\nreal v_conduction_losses;\nreal conduction_losses_table[24] = { 0.0, 1.5, 1.8, 2.3, 2.69, 2.9, 3.1, 3.25, 3.41, 3.73, 4.0, 4.31, 0.0, 1.63, 2.09, 2.77, 3.37, 3.63, 3.8, 4.11, 4.37, 4.81, 5.29, 5.7 };\nreal current_axis_turn_on_losses[4] = { 0.0, 400.0, 800.0, 1200.0 };\nreal voltage_axis_turn_on_losses[2] = { 0.0, 1800.0 };\nreal temperature_axis_turn_on_losses[2] = { 25.0, 125.0 };\nreal E_turn_on_losses;\nreal turn_on_losses_table[16] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.4068, 1.001, 1.822, 0.0, 0.0, 0.0, 0.0, 0.0, 0.6317, 1.38, 1.784 };\n\'}}"
+            user_vars_transistor = "User variables transistor"
+            user_vars_diode = "User variables diode"
+            Vce = "1.3"
+            Rce = "0"
+            Vd = "1.2"
+            Rd = "0"
+            i_sw = "[0.0, 6.0, 12.0, 18.0, 24.0]"
+            v_sw = "[0.0, 600.0]"
+            temp_sw = "[25.0, 50.0, 75.0, 100.0, 125.0]"
+            vce_table_out = "[1.3, 1.3, 1.3, 1.3, 1.3]"
+            vd_table_out = "[1.2, 1.2, 1.2, 1.2, 1.2]"
+            et_on_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*3.8e-3, 0.4*3.8e-3, 0.8*3.8e-3, 0.68*3.8e-3, 0.9*3.8e-3], [0.65*3.8e-3, 0.9*3.8e-3, 1.2*3.8e-3, 1.5*3.8e-3, 1.7*3.8e-3], [0.9*3.8e-3, 1.3*3.8e-3, 1.7*3.8e-3, 1.9*3.8e-3, 2.25*3.8e-3], [1.1*3.8e-3, 1.7*3.8e-3, 2.1*3.8e-3, 2.3*3.8e-3, 2.5*3.8e-3]]"
+            et_off_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*2.1e-3, 0.4*2.1e-3, 0.8*2.1e-3, 0.68*2.1e-3, 0.9*2.1e-3], [0.65*2.1e-3, 0.9*2.1e-3, 1.2*2.1e-3, 1.5*2.1e-3, 1.7*2.1e-3], [0.9*2.1e-3, 1.3*2.1e-3, 1.7*2.1e-3, 1.9*2.1e-3, 2.25*2.1e-3], [1.1*2.1e-3, 1.7*2.1e-3, 2.1*2.1e-3, 2.3*2.1e-3, 2.5*2.1e-3]]"
+            ed_off_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*2.2e-3, 0.4*2.2e-3, 0.8*2.2e-3, 0.68*2.2e-3, 0.9*2.2e-3], [0.65*2.2e-3, 0.9*2.2e-3, 1.2*2.2e-3, 1.5*2.2e-3, 1.7*2.2e-3], [0.9*2.2e-3, 1.3*2.2e-3, 1.7*2.2e-3, 1.9*2.2e-3, 2.25*2.2e-3], [1.1*2.2e-3, 1.7*2.2e-3, 2.1*2.2e-3, 2.3*2.2e-3, 2.5*2.2e-3]]"
+            load_switching_data_from_xml = "Import losses data from xml files"
+            temp_estimation = "False"
+            thermal_networks_type = "Foster"
+            switch_Rth = "[0.159, 0.133, 0.120, 0.038]"
+            switch_Tth = "[1.1e-1, 1.56e-2, 1.35e-3, 1.51e-4]"
+            switch_Cth = "[0.0029, 0.0097, 0.1068, 0.8500]"
+            diode_Rth = "[0.159, 0.133, 0.120, 0.038]"
+            diode_Tth = "[1.1e-1, 1.56e-2, 1.35e-3, 1.51e-4]"
+            diode_Cth = "[0.0029, 0.0097, 0.1068, 0.8500]"
+            loss_exec_rate = "100e-6"
+            visualize_luts = "Visualize Lookup Tables"
+            show_monitoring = "False"
+        }
+
+        "core/Rate Transition" {
+            init_value = "0.0"
+            execution_rate = "100e-6"
+            _supported_platforms = "[\'generic\']"
+        }
+
+        "core/Signal Controlled Sinusoidal Voltage Source" {
+            phase_number = "1"
+            execution_rate = "inherit"
+        }
+
+        "core/Signal Controlled Voltage Source" {
+            execution_rate = "inherit"
+        }
+
+        "core/Single Pole Single Throw Contactor" {
+            signal_access = "inherit"
+            switches_option = "False"
+            resistance = "1.0"
+            ctrl_src = "Digital input"
+            ctrl_mode = "switch"
+            Sa = "1"
+            Sa_logic = "active high"
+            pwm_enabling = "False"
+            pwm_enable_di = "13"
+            pwm_enable_inv = "active high"
+            enable_fb_out = "False"
+            fb_out_type = "real"
+            execution_rate = "inherit"
+            dtsm_switch_name = ""
+            dtsm_switch_ctrl = ""
+            initial_state = "off"
+            on_delay = "0"
+            off_delay = "0"
+            switching = "any current"
+            hide_int_meas = "False"
+        }
+
+        "core/Voltage Measurement" {
+            signal_access = "inherit"
+            bw_limit = "False"
+            frequency = "10e3"
+            comparator_enable = "False"
+            operator = "greater"
+            threshold = "0"
+            cmp_abs_value = "False"
+            feed_forward = "false"
+            sig_output = "False"
+            sig_output_filt_and_full_bw = "False"
+            execution_rate = "100e-6"
+            addr = "0"
+            nd_msr_estimation = "false"
+            dev_cpl_msr = "false"
+            host_device = "0"
+            output_to_device = "0"
+            dev_cpl_index = "0"
+            dev_cpl_var_nb = "0"
+            visible = "True"
+            override_signal_name = "False"
+            signal_name = ""
+        }
+    }
+
+    CODE model_init
+        # Numpy module is imported as 'np'
+        # Scipy module is imported as 'sp'
+        # The Schematic API is imported as 'mdl'
+        # To get the model file path, use 'mdl.get_model_file_path()'
+        # To print information to the console, use info()
+        
+        Ts = 1e-5
+        
+                       
+    ENDCODE
+}
