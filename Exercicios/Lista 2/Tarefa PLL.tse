@@ -1,0 +1,312 @@
+version = 4.2
+
+//
+// Saved by sw version: 2026.2
+//
+
+model "Tarefa PLL" {
+    configuration {
+        hil_device = "HIL402"
+        hil_configuration_id = 1
+        simulation_method = exact
+        simulation_time_step = auto
+        simulation_discret_scaling = 1.0
+        dsp_timer_periods = 100e-6, 50e-3
+        ss_calc_method = "systematic elimination"
+        enb_pole_shift = True
+        enb_gds_oversampling = True
+        show_modes = False
+        device_ao_limit_enable = False
+        reset_analog_outputs_on_sim_stop = True
+        reset_analog_outputs_on_sim_stop_mode = Offset values
+        reset_digital_outputs_on_sim_stop = True
+        vhil_adio_loopback = False
+        dma_enable = False
+        cpl_stb = False
+        enb_dep_sw_detect = False
+        code_section = "internal memory"
+        data_section = "internal memory"
+        sys_sp_rate_1 = 0.0001
+        sys_sp_rate_2 = 0.05
+        sys_real_type_precision = "default"
+        user_real_type_precision = "default"
+        sys_cpu_optimization = "high"
+        user_cpu_optimization = "high"
+        user_cpu_part_option = "default"
+        matrix_based_reduction = True
+        cpl_dynamics_analysis = False
+        export_ss_to_pickle = False
+        ground_scope_core = False
+        dss_num_tol = 1e-15
+        cce_platform = "generic"
+        cce_use_relative_names = False
+        cce_type_mapping_real = "double"
+        cce_type_mapping_uint = "unsigned int"
+        cce_type_mapping_int = "int"
+        cce_platform = "generic"
+        cce_use_relative_names = False
+        cce_type_mapping_real = "double"
+        cce_type_mapping_uint = "unsigned int"
+        cce_type_mapping_int = "int"
+        cce_term_var_location = "local"
+        cce_directory = ""
+        cce_custom_type_int = ""
+        cce_custom_type_uint = ""
+        cce_custom_type_real = ""
+        tunable_params = "component defined"
+        sp_compiler_type = "C compiler"
+        sig_stim = "off"
+        export_resource_list = ""
+        export_dependency_list = ""
+        excluded_resource_list = ""
+        excluded_component_from_locking_list = ""
+        export_out_file = ""
+        export_lock_top_level = True
+        export_encrypt_library = True
+        export_encrypt_resources = True
+        solver_type = "DAE"
+        integration_method = "BDF"
+        max_sim_step = 1e-4
+        simulation_time = 1.0
+        abs_tol = 1e-3
+        rel_tol = 1e-3
+        init_sim_step = 1e-6
+        r_on_sw = 1e-3
+        v_on_diode = 0.1
+        data_sampling_rate = 0
+        feedthrough_validation_error_level = warning
+    }
+
+    component Subsystem Root {
+        component "core/Voltage Source" Vs1 {
+            execution_rate = "0.0001"
+            init_frequency = "60"
+            init_rms_value = "0.707"
+            init_source_nature = "Sine"
+            param_set = ""
+        }
+        [
+            position = 8124, 8200
+            rotation = right
+        ]
+
+        component "core/Probe" Theta {
+        }
+        [
+            position = 8500, 8484
+        ]
+
+        component "core/Ground" gnd1 {
+        }
+        [
+            position = 8140, 8304
+        ]
+
+        component "core/Rate Transition" "Rate Transition1" {
+            execution_rate = "4e-05"
+        }
+        [
+            position = 8104, 8484
+            size = 32, 32
+        ]
+
+        component "core/Voltage Measurement" Vgrid {
+            execution_rate = "1e-06"
+            sig_output = "True"
+        }
+        [
+            position = 8244, 8200
+            rotation = right
+            size = 64, 32
+        ]
+
+        component "core/Scope" Scope1 {
+            selected_signals = "[\'Vgrid\', \'Theta\']"
+            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true, \"signals_tooltips_enabled\": true}, \"signals\": {\"Vgrid\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}, \"is_manual\": {\"1\": false}}, \"Theta\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#00CC00\"}, \"display\": {\"1\": \"solid\"}, \"is_manual\": {\"1\": false}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"5\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"6\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
+            user_range_data = "{\"1\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"2\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"3\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"4\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"5\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"6\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}}"
+        }
+        [
+            position = 7608, 8212
+        ]
+
+        component "core/C function" "C function1" {
+            input_terminals_dimensions = "inherit"
+            output_terminals_dimensions = "inherit"
+        }
+        [
+            position = 8280, 8484
+            size = 48, 48
+        ]
+
+        tag Goto1 {
+            value = "Vgrid"
+            scope = global
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8364, 8200
+            size = 60, 20
+        ]
+
+        tag From1 {
+            value = "Vgrid"
+            scope = global
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7940, 8484
+            size = 60, 20
+        ]
+
+        junction Junction1 pe
+        [
+            position = 8140, 8240
+        ]
+
+        comment Comment10 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Sans'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Universidade Federal de Santa Catarina</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Prof. Tiago Davi Curi Busarello</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Tarefa de EAS410002 - Controle para Eletrônica de Potência</p></body></html> ENDCOMMENT 
+        [
+            position = 7320, 8064
+        ]
+
+        comment Comment11 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Sans'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Sinal de entrada</p></body></html> ENDCOMMENT 
+        [
+            position = 7984, 8156
+        ]
+
+        comment Comment12 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Sans'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Inclua seu PLL aqui:</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">seja em linguagem C </p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">ou diagrama de blocos</p></body></html> ENDCOMMENT 
+        [
+            position = 8204, 8552
+        ]
+
+        scheme_area Area1 {
+            title = <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Tahoma'; font-size:14pt; font-weight:100; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0;text-indent:0px;">PLL</p></body></html>
+        }
+        [
+            position = 8288, 8512
+            size = 188, 240
+        ]
+
+        connect Junction1 Vgrid.n_node as Connection8
+        connect Vgrid.out Goto1 as Connection10
+        connect Vs1.n_node Junction1 as Connection7
+        connect Vs1.p_node Vgrid.p_node as Connection5
+        [
+            breakpoints = 8124, 8128
+        ]
+        connect gnd1.node Junction1 as Connection9
+        connect From1 "Rate Transition1.in" as Connection13
+        connect "Rate Transition1.out" "C function1.in" as Connection14
+        connect "C function1.out" Theta.in as Connection15
+    }
+
+    default {
+        "core/C function" {
+            input_terminals = "real in;"
+            input_terminals_show_labels = "False;"
+            input_terminals_feedthrough = "True;"
+            input_terminals_dimensions = "inherit;"
+            output_terminals = "real out;"
+            output_terminals_show_labels = "False;"
+            output_terminals_feedthrough = "True;"
+            output_terminals_dimensions = "inherit;"
+            output_fnc = ""
+            update_fnc = ""
+            init_fnc = ""
+            global_variables = ""
+            parameters = ""
+            library_load_type = "Compile-time load"
+            dll_file_path = ""
+            dll_file_path_full = ""
+            arm_a9_file_path = ""
+            arm_a9_file_path_full = ""
+            arm_a53_file_path = ""
+            arm_a53_file_path_full = ""
+            h_file_path = ""
+            h_file_path_full = ""
+            add_src_path = ""
+            add_src_path_full = ""
+            convert_to_relative_dll = "True"
+            convert_to_relative_a = "True"
+            convert_to_relative_src = "True"
+            arb_defs = ""
+            add_macros = ""
+            skip_pre_cmpl_check = "False"
+            generate_for_hil = "True"
+            execution_rate = "inherit"
+            _supported_platforms = "[\'generic\']"
+            refresh = "refresh"
+        }
+
+        "core/Probe" {
+            signal_access = "inherit"
+            addr = "0"
+            override_signal_name = "False"
+            signal_name = ""
+            signal_type = "generic"
+            streaming_en = "False"
+            streaming_er_idx = "0"
+            execution_rate = "inherit"
+        }
+
+        "core/Scope" {
+            signals_data = "{}"
+            selected_signals = "[]"
+            user_range_data = "{}"
+        }
+
+        "core/Voltage Source" {
+            sig_input = "False"
+            type = "signal generator"
+            param_set = "1phase"
+            parent_label = ""
+            dtsm_switch_name = ""
+            addr = "0"
+            spc_nb = "0"
+            execution_rate = "100e-6"
+            cpd_visible = "True"
+            enable_snb = "False"
+            snb_type = "R2"
+            R2 = "0.0"
+            L1 = "0.1"
+            override_signal_name = "False"
+            signal_name = ""
+            init_source_nature = "Constant"
+            init_const_value = "0.0"
+            init_rms_value = "0.0"
+            init_frequency = "50.0"
+            init_phase = "0.0"
+        }
+
+        "core/Rate Transition" {
+            init_value = "0.0"
+            execution_rate = "100e-6"
+            _supported_platforms = "[\'generic\']"
+        }
+
+        "core/Voltage Measurement" {
+            signal_access = "inherit"
+            bw_limit = "False"
+            frequency = "10e3"
+            comparator_enable = "False"
+            operator = "greater"
+            threshold = "0"
+            cmp_abs_value = "False"
+            feed_forward = "false"
+            sig_output = "False"
+            sig_output_filt_and_full_bw = "False"
+            execution_rate = "100e-6"
+            addr = "0"
+            nd_msr_estimation = "false"
+            dev_cpl_msr = "false"
+            host_device = "0"
+            output_to_device = "0"
+            dev_cpl_index = "0"
+            dev_cpl_var_nb = "0"
+            visible = "True"
+            override_signal_name = "False"
+            signal_name = ""
+        }
+    }
+}

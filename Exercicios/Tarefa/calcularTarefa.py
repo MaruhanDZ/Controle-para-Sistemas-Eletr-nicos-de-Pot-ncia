@@ -15,7 +15,7 @@ samplingPeriod = 1/15000
 
 
 # Parâmetros de projeto para o controlador
-desiredCutoffFrequency = 1.5E3
+desiredCutoffFrequency = 20
 desiredPhaseMargin = 60
 
 # Funções transparência
@@ -95,8 +95,8 @@ plt.tight_layout()
 plt.show()
 # ------------------------------------------------
 # obter os seguintes dados pelo diagrama de bode plotado
-phaseOnDesiredCutoffFrequency = -179.4 #°                                 # ALTERAR CASO MUDAR ALGUMA COISA
-gainOnDesiredCutoffFrequency = -35.8 #dB                                  # ALTERAR CASO MUDAR ALGUMA COISA
+phaseOnDesiredCutoffFrequency = -75 #°                                 # ALTERAR CASO MUDAR ALGUMA COISA
+gainOnDesiredCutoffFrequency = -7 #dB                                  # ALTERAR CASO MUDAR ALGUMA COISA
 
 # converter o ganho em dB para absoluto
 realGain = np.power(10, np.abs(gainOnDesiredCutoffFrequency)/20)

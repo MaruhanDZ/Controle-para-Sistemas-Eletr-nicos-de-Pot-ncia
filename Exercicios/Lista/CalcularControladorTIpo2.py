@@ -1,7 +1,7 @@
 import numpy as np
 # Prencher com parametros
-MFd = 45
-FaseFreqCorte = -90
+MFd = 60
+FaseFreqCorte = -75
 FCdesejada = 1000
 
 ganhodBFCd = -29
